@@ -1,0 +1,5 @@
+*venv
+recognition/models
+segmentation/models/weights
+sirius_data
+*__pycache__
