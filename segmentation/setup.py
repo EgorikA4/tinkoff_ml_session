@@ -2,10 +2,11 @@
 
 from typing import Any
 
-from GroundingDINO.groundingdino.util.inference import load_model
-from segment_anything import SamPredictor, build_sam
-
 import consts
+
+from .GroundingDINO.groundingdino.util.inference import load_model
+from .segment_anything.segment_anything import build_sam
+from .segment_anything.segment_anything.predictor import SamPredictor
 
 groundingdino_model: Any
 sam_predictor: SamPredictor

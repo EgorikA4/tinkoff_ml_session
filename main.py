@@ -52,4 +52,20 @@ class FullPipeline:
             consts.OMNIFUSION_QUERY,
             self.describe.default_gen_params(),
         )
-        return image_with_changed_bg, description
+        return image_with_changed_bg, description.strip('</s>')
+
+
+if __name__ == '__main__':
+    PATH_TO_IMAGE = ''
+    PATH_TO_SAVE_IMAGE = ''
+    PATH_TO_SAVE_DESCRIPTION = ''
+
+    RGB_COLOR = (255, 255, 255)
+
+    full_pipeline = FullPipeline()
+
+    image, text = full_pipeline.forward(PATH_TO_IMAGE, RGB_COLOR)
+    image.save(PATH_TO_SAVE_IMAGE)
+
+    with open(PATH_TO_SAVE_DESCRIPTION, 'w') as description_file:
+        description_file.write(text)

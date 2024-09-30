@@ -1,12 +1,17 @@
 """Module that initializes a model variables."""
+import os
+import sys
+
+sys.path.append('../.')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from typing import Any
 
 import torch
-from models import CLIPVisionTower
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-import consts
+from tinkoff_ml_session import consts
+from tinkoff_ml_session.description.models import CLIPVisionTower
 
 tokenizer: AutoTokenizer
 model: AutoModelForCausalLM
@@ -48,7 +53,7 @@ def setup_projection() -> None:
     """Set a projection."""
     global projection
     projection = torch.load(
-        'OmniMistral-v1_1/projection.pt',
+        consts.OMNIFUSION_PROJECTION,
         map_location=consts.DEVICE,
     )
 
@@ -57,7 +62,7 @@ def setup_special_embs() -> None:
     """Set a special embeddings."""
     global special_embs
     special_embs = torch.load(
-        'OmniMistral-v1_1/special_embeddings.pt',
+        consts.OMNIFUSION_EMBEDDINGS,
         map_location=consts.DEVICE,
     )
 

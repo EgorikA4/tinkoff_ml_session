@@ -3,12 +3,12 @@ from typing import Any
 
 import numpy as np
 import torch
-from GroundingDINO.groundingdino.util import box_ops, inference
-from segment_anything.segment_anything.predictor import SamPredictor
 
 import consts
 
 from . import setup
+from .GroundingDINO.groundingdino.util import box_ops, inference
+from .segment_anything.segment_anything.predictor import SamPredictor
 
 
 class SegmentationPipeline:
@@ -99,7 +99,6 @@ class SegmentationPipeline:
         )
         setup.setup_sam(
             consts.SAM_CKPT_PATH,
-            consts.DEVICE,
         )
 
     def _preprocessing_image(

@@ -1,13 +1,16 @@
 """Module that provides DescriptionPipeline."""
+import sys
+
+sys.path.append('../.')
 
 from typing import Any
 
 import torch
-from models import CLIPVisionTower
 from PIL import Image
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-import consts
+from tinkoff_ml_session import consts
+from tinkoff_ml_session.description.models import CLIPVisionTower
 
 from . import setup
 
@@ -17,6 +20,7 @@ class DescriptionPipeline:
 
     def __init__(self) -> None:
         """Initialize OmniFusion parts."""
+        self._setup()
         self.tokenizer: AutoTokenizer = setup.get_tokenizer()
         self.model: AutoModelForCausalLM = setup.get_model()
         self.projection: Any = setup.get_projection()
